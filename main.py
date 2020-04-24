@@ -3,7 +3,7 @@
 import requests, collections
 from bs4 import BeautifulSoup
 
-ProjectDetail = collections.namedtuple("ProjectDetail", ["author", "title", "description", "language", "stars", "forks", "url"])
+ProjectDetail = collections.namedtuple("ProjectDetail", ["author", "title", "description", "language", "star", "fork", "url"])
 
 html_page = requests.get('https://github.com/trending')
 html_txt = html_page.text
@@ -26,20 +26,22 @@ for project in projects:
     raw_language = project.find("span", itemprop="programmingLanguage")
     if raw_language:
         language = raw_language.text
-    else
+    else:
         language = "Not found"
 
     raw_star, raw_fork, *_ = project.findAll('a', {"class": "d-inline-block"})
     if raw_star:
         star = "".join(raw_star.text.split()).replace(",", "")
-    else
+    else:
         star = "not found"
 
     if raw_fork:
         fork = raw_fork.text.strip().replace(",", "")
-    else
+    else:
         fork = "not found"
 
     print('-'*10)
 
-    ProjectDetail(auther=author, title=title, description=description, language=raw_language.text)
+    ProjectDetail(author=author, title=title, description=description, language=language, start=star, fork=fork, url='')
+    
+    
