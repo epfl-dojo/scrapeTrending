@@ -15,12 +15,14 @@ projects = soup.findAll('article', {"class" : "Box-row"})
 
 
 for project in projects:
-    print ("title = " project.find)
-    print ("description = " project.find)
-    print ("author = " project.find)
-    print ("language = " project.find)
-    print ("stars = " project.find)
-    print ("forks = " project.find)
-    print (project.text)
+    title = project.h1.a
+    print(title.text)
+    # print ("title = " project.find)
+    # print ("description = " project.find)
+    # print ("author = " project.find)
+    # print ("language = " project.find)
+    # print ("stars = " project.find)
+    # print ("forks = " project.find)
+    # print (project.text)
 
     # print(names)
