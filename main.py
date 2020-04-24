@@ -11,7 +11,7 @@ html_txt = html_page.text
 soup = BeautifulSoup(html_txt, 'html.parser')
 names = soup.findAll("div", { "class" : "Box" })
 
-paragraphs = soup.find('article')
+paragraphs = soup.findAll('article', {"class" : "Box-row"})
 for paragraph in paragraphs:
     print (paragraph.text)
 
