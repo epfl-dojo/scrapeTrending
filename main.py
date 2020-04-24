@@ -7,4 +7,8 @@ from bs4 import BeautifulSoup
 
 html_page = requests.get('https://github.com/trending')
 html_txt = html_page.text
-print(html_txt)
+
+soup = BeautifulSoup(html_txt, 'html.parser')
+names = soup.findAll("div", { "class" : "Box" })
+
+print(names)
