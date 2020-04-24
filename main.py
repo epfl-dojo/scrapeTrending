@@ -9,16 +9,20 @@ from bs4 import BeautifulSoup
 from flask import Flask
 from flask import jsonify, request, make_response
 
-ProjectDetail = collections.namedtuple("ProjectDetail", ["author", "title", "description", "language", "star", "fork", "url"])
+ProjectDetail = collections.namedtuple("ProjectDetail", ["author", "title", "description", "language", "stars", "forks", "url"])
 
 app = Flask(__name__)
 
 @app.route("/")
 def main():
+    body = "<h1>Scrape Trending</h1>"
+    body += "<p><a href='https://github.com/epfl-dojo/scrapeTrending'>This project</a> scrapes the <a href='https://github.com/trending'>https://github.com/trending</a> page.</p>"
+    body += "<p><ul><li><a href='/trending?since=daily'>View daily trends data</a></li><li><a href='/trending?since=weekly'>View weekly trends data</a></li><li><a href='/trending?since=monthly'>View monthly trends data</a></li></ul></p>"
+    body += "<h2>Functions doc</h2>"
     docs = []
     for route, view in app.view_functions.items():
         docs.append("{}: {}".format(route, view.__doc__))
-    return "<br/>".join(docs)
+    return body + "<br/>".join(docs)
 
 @app.route("/trending")
 def get_trending():
@@ -43,7 +47,7 @@ def get_trending():
             description = raw_description.text.strip()
         else:
             description = ''
-        # stars = project.findAll("div span")
+
         raw_language = project.find("span", itemprop="programmingLanguage")
         if raw_language:
             language = raw_language.text
@@ -55,7 +59,6 @@ def get_trending():
             star = "".join(raw_star.text.split()).replace(",", "")
         else:
             star = "not found"
-
         if raw_fork:
             fork = raw_fork.text.strip().replace(",", "")
         else:
@@ -68,6 +71,3 @@ def get_trending():
 if __name__ == "__main__":
     #main()
     app.run(debug=True)
-#    flask.F
-    #args = parser.parse_args()
-    #print(args.since)
