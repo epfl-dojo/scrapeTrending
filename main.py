@@ -26,8 +26,12 @@ for project in projects:
 
     dum,author,title = project.h1.a['href'].split("/")
     description = project.p.text.strip()
-    stars = project.findAll("div")
-    oneStar = stars.findAll('a', {"class" : " muted-link d-inline-block mr-3"})
+    # stars = project.findAll("div span")
+    infospans = project.findAll("div") #.select("span") # stars[0].findChildrens()
+    print(infospans)
+    # language = infospans[0].find(span).text()
+    # print(language)
+    # oneStar = stars.findAll('a', {"class" : " muted-link d-inline-block mr-3"})
     
     
     
@@ -39,6 +43,6 @@ for project in projects:
     # print(title)
     # print(description)
     # print(stars)
-    print(oneStar)
+    # print(oneStar)
 
     exit()
