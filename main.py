@@ -2,6 +2,7 @@
 
 import requests, collections
 from bs4 import BeautifulSoup
+
 ProjectDetail = collections.namedtuple("ProjectDetail", ["author", "title", "description", "language", "stars", "forks", "url"])
 
 html_page = requests.get('https://github.com/trending')
@@ -15,7 +16,8 @@ projects = soup.findAll('article')
 
 for project in projects:
     
-    dum,author,title = project.h1.a['href'].split("/")
+    dum, author, title = project.h1.a['href'].split("/")
+
     print(title)
     print(author)
     description = project.p.text.strip()
@@ -30,3 +32,4 @@ for project in projects:
     if raw_fork:
         print(raw_fork.text.strip().replace(",", ""))
     print('-'*10)
+
