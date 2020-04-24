@@ -4,6 +4,12 @@ import requests
 
 from bs4 import BeautifulSoup
 
+class Project
+  __init__(bs):
+    dum,self.author,self.title = project.h1.a['href'].split("/")
+    self.description = project.p.text.strip()
+  __str__():
+
 
 html_page = requests.get('https://github.com/trending')
 html_txt = html_page.text
@@ -15,8 +21,11 @@ projects = soup.findAll('article', {"class" : "Box-row"})
 
 
 for project in projects:
-    title = project.h1.a['href']
+    dum,author,title = project.h1.a['href'].split("/")
+    description = project.p.text.strip()
+    print(author)
     print(title)
+    print(description)
     
     exit()
     # print ("title = " project.find)
