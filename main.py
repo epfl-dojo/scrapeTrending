@@ -27,12 +27,19 @@ for project in projects:
     if raw_language:
         language = raw_language.text
     else
-        language = None
+        language = "Not found"
+
     raw_star, raw_fork, *_ = project.findAll('a', {"class": "d-inline-block"})
     if raw_star:
-        print("".join(raw_star.text.split()).replace(",", ""))
+        star = "".join(raw_star.text.split()).replace(",", "")
+    else
+        star = "not found"
+
     if raw_fork:
-        print(raw_fork.text.strip().replace(",", ""))
+        fork = raw_fork.text.strip().replace(",", "")
+    else
+        fork = "not found"
+
     print('-'*10)
 
     ProjectDetail(auther=author, title=title, description=description, language=raw_language.text)
