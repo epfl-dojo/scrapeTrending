@@ -27,14 +27,14 @@ for project in projects:
     dum,author,title = project.h1.a['href'].split("/")
     description = project.p.text.strip()
     stars = project.findAll("div")
-    oneStar = stars[0].findAll("a")
+    oneStar = stars[1].findAll("a")
     # stars = project.findAll(div[2]/a[1])
     # forks =
     # language =
-    print(author)
-    print(title)
-    print(description)
-    print(stars)
-    print(oneStar)
+    # print(author)
+    # print(title)
+    # print(description)
+    # print(stars)
+    print(oneStar.text)
 
     exit()
