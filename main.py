@@ -37,7 +37,7 @@ def get_trending():
     for project in soup.findAll('article'):
 
         dum, author, title = project.h1.a['href'].split("/")
-
+        url = 'https://gitthub.com' + project.h1.a['href']
         raw_description = project.p
         if raw_description:
             description = raw_description.text.strip()
@@ -61,7 +61,7 @@ def get_trending():
         else:
             fork = "not found"
 
-        projects.append(ProjectDetail(author=author, title=title, description=description, language=language, star=star, fork=fork, url=''))
+        projects.append(ProjectDetail(author=author, title=title, description=description, language=language, stars=star, forks=fork, url=url))
 
     return jsonify({"projects": [project._asdict() for project in projects], "source_url": resp.url})
 
