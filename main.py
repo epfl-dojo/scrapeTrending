@@ -15,7 +15,7 @@ projects = soup.findAll('article')
 
 
 for project in projects:
-    
+
     dum, author, title = project.h1.a['href'].split("/")
 
     print(title)
@@ -25,7 +25,9 @@ for project in projects:
     # stars = project.findAll("div span")
     raw_language = project.find("span", itemprop="programmingLanguage")
     if raw_language:
-        print(raw_language.text)
+        language = raw_language.text
+    else
+        language = None
     raw_star, raw_fork, *_ = project.findAll('a', {"class": "d-inline-block"})
     if raw_star:
         print("".join(raw_star.text.split()).replace(",", ""))
@@ -33,3 +35,4 @@ for project in projects:
         print(raw_fork.text.strip().replace(",", ""))
     print('-'*10)
 
+    ProjectDetail(auther=author, title=title, description=description, language=raw_language.text)
