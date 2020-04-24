@@ -11,8 +11,16 @@ html_txt = html_page.text
 soup = BeautifulSoup(html_txt, 'html.parser')
 names = soup.findAll("div", { "class" : "Box" })
 
-paragraphs = soup.findAll('article', {"class" : "Box-row"})
-for paragraph in paragraphs:
-    print (paragraph.text)
+projects = soup.findAll('article', {"class" : "Box-row"})
+
+
+for project in projects:
+    print ("title = " project.find)
+    print ("description = " project.find)
+    print ("author = " project.find)
+    print ("language = " project.find)
+    print ("stars = " project.find)
+    print ("forks = " project.find)
+    print (project.text)
 
     # print(names)
