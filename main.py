@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-import requests
+import requests, collections
 from bs4 import BeautifulSoup
-
+ProjectDetail = collections.namedtuple("ProjectDetail", ["author", "title", "description", "language", "stars", "forks", "url"])
 
 html_page = requests.get('https://github.com/trending')
 html_txt = html_page.text
@@ -27,6 +27,6 @@ for project in projects:
     raw_star, raw_fork, *_ = project.findAll('a', {"class": "d-inline-block"})
     if raw_star:
         print("".join(raw_star.text.split()).replace(",", ""))
-    if raw_fork
-    print(raw_star)
+    if raw_fork:
+        print(raw_fork.text.strip().replace(",", ""))
     print('-'*10)
